@@ -153,8 +153,8 @@ CAShapeLayer *closedMenuShape;
     [[[self view] layer] addSublayer:closedMenuShape];
     
     // Set new origin of menu
-    CGRect menuFrame = self.menu.frame;
-    menuFrame.origin.y = self.menubar.frame.size.height-menuFrame.size.height;
+    CGRect menuFrame = self.menu.frame; // 三个按钮View
+    menuFrame.origin.y = self.menubar.frame.size.height-menuFrame.size.height; // menuBar为导航栏
     
     // Set new alpha of Container View (to get fade effect)
     float containerAlpha = 1.0f;
@@ -217,60 +217,60 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void) drawOpenLayer {
-    [openMenuShape removeFromSuperlayer];
-    openMenuShape = [CAShapeLayer layer];
-    
-    // Constants to ease drawing the border and the stroke.
-    int height = self.menubar.frame.size.height;
-    int width = self.menubar.frame.size.width;
-    int triangleDirection = 1; // 1 for down, -1 for up.
-    int triangleSize =  8;
-    int trianglePosition = trianglePlacement*width;
-    
-    // The path for the triangle (showing that the menu is open).
-    UIBezierPath *triangleShape = [[UIBezierPath alloc] init];
-    [triangleShape moveToPoint:CGPointMake(trianglePosition, height)];
-    [triangleShape addLineToPoint:CGPointMake(trianglePosition+triangleSize, height+triangleDirection*triangleSize)];
-    [triangleShape addLineToPoint:CGPointMake(trianglePosition+2*triangleSize, height)];
-    [triangleShape addLineToPoint:CGPointMake(trianglePosition, height)];
-    
-    [openMenuShape setPath:triangleShape.CGPath];
-    [openMenuShape setFillColor:[self.menubar.backgroundColor CGColor]];
-    //[openMenuShape setFillColor:[self.menu.backgroundColor CGColor]];
-    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
-    [borderPath moveToPoint:CGPointMake(0, height)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition, height)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition+triangleSize, height+triangleDirection*triangleSize)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition+2*triangleSize, height)];
-    [borderPath addLineToPoint:CGPointMake(width, height)];
-    
-    [openMenuShape setPath:borderPath.CGPath];
-    [openMenuShape setStrokeColor:[[UIColor whiteColor] CGColor]];
-    
-    [openMenuShape setBounds:CGRectMake(0.0f, 0.0f, height+triangleSize, width)];
-    [openMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
-    [openMenuShape setPosition:CGPointMake(0.0f, -self.offset)];
+//    [openMenuShape removeFromSuperlayer];
+//    openMenuShape = [CAShapeLayer layer];
+//    
+//    // Constants to ease drawing the border and the stroke.
+//    int height = self.menubar.frame.size.height;
+//    int width = self.menubar.frame.size.width;
+//    int triangleDirection = 1; // 1 for down, -1 for up.
+//    int triangleSize =  8;
+//    int trianglePosition = trianglePlacement*width;
+//    
+//    // The path for the triangle (showing that the menu is open).
+//    UIBezierPath *triangleShape = [[UIBezierPath alloc] init];
+//    [triangleShape moveToPoint:CGPointMake(trianglePosition, height)];
+//    [triangleShape addLineToPoint:CGPointMake(trianglePosition+triangleSize, height+triangleDirection*triangleSize)];
+//    [triangleShape addLineToPoint:CGPointMake(trianglePosition+2*triangleSize, height)];
+//    [triangleShape addLineToPoint:CGPointMake(trianglePosition, height)];
+//    
+//    [openMenuShape setPath:triangleShape.CGPath];
+//    [openMenuShape setFillColor:[self.menubar.backgroundColor CGColor]];
+//    //[openMenuShape setFillColor:[self.menu.backgroundColor CGColor]];
+//    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
+//    [borderPath moveToPoint:CGPointMake(0, height)];
+//    [borderPath addLineToPoint:CGPointMake(trianglePosition, height)];
+//    [borderPath addLineToPoint:CGPointMake(trianglePosition+triangleSize, height+triangleDirection*triangleSize)];
+//    [borderPath addLineToPoint:CGPointMake(trianglePosition+2*triangleSize, height)];
+//    [borderPath addLineToPoint:CGPointMake(width, height)];
+//    
+//    [openMenuShape setPath:borderPath.CGPath];
+//    [openMenuShape setStrokeColor:[[UIColor whiteColor] CGColor]];
+//    
+//    [openMenuShape setBounds:CGRectMake(0.0f, 0.0f, height+triangleSize, width)];
+//    [openMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
+//    [openMenuShape setPosition:CGPointMake(0.0f, -self.offset)];
 }
 
 - (void) drawClosedLayer {
-    [closedMenuShape removeFromSuperlayer];
-    closedMenuShape = [CAShapeLayer layer];
-    
-    // Constants to ease drawing the border and the stroke.
-    int height = self.menubar.frame.size.height;
-    int width = self.menubar.frame.size.width;
-    
-    // The path for the border (just a straight line)
-    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
-    [borderPath moveToPoint:CGPointMake(0, height)];
-    [borderPath addLineToPoint:CGPointMake(width, height)];
-    
-    [closedMenuShape setPath:borderPath.CGPath];
-    [closedMenuShape setStrokeColor:[[UIColor whiteColor] CGColor]];
-    
-    [closedMenuShape setBounds:CGRectMake(0.0f, 0.0f, height, width)];
-    [closedMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
-    [closedMenuShape setPosition:CGPointMake(0.0f, -self.offset)];
+//    [closedMenuShape removeFromSuperlayer];
+//    closedMenuShape = [CAShapeLayer layer];
+//    
+//    // Constants to ease drawing the border and the stroke.
+//    int height = self.menubar.frame.size.height;
+//    int width = self.menubar.frame.size.width;
+//    
+//    // The path for the border (just a straight line)
+//    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
+//    [borderPath moveToPoint:CGPointMake(0, height)];
+//    [borderPath addLineToPoint:CGPointMake(width, height)];
+//    
+//    [closedMenuShape setPath:borderPath.CGPath];
+//    [closedMenuShape setStrokeColor:[[UIColor whiteColor] CGColor]];
+//    
+//    [closedMenuShape setBounds:CGRectMake(0.0f, 0.0f, height, width)];
+//    [closedMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
+//    [closedMenuShape setPosition:CGPointMake(0.0f, -self.offset)];
 }
 
 - (IBAction)displayGestureForTapRecognizer:(UITapGestureRecognizer *)recognizer {
